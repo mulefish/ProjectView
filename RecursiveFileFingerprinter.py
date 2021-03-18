@@ -1,5 +1,6 @@
 from hashlib import md5
 import os
+import json
 s = os.sep
 
 # fingerprinter from:
@@ -20,13 +21,46 @@ def fingerprinter(file_path):
     return hash_method.hexdigest()
 
 
+nickname = 0
+seen = {}
+
+
+def set_next(directory):
+    global nickname
+    if directory in seen:
+        return seen[directory]["nickname"]
+    else:
+        nickname += 1
+        seen[directory] = {}
+        seen[directory]["nickname"] = nickname
+        seen[directory]["children"] = {}
+
+
+def add_child_into_directory(directory, filename, fingerprint):
+    if directory not in seen:
+        set_next(directory)
+
+    seen[directory]["children"]["filename"] = fingerprint
+
+
 for root, dirs, files in os.walk('.'):
     path = root.split(s)
-    print(root)
+    # print("|" + root + "|")
+
     for file in files:
+
         file_base = os.path.join(root, file)
         hash = fingerprinter(file_base)
         pretty = len(path) * '---'
-        print("{}{} : {}".format(pretty, file, hash))
+        # print("{}{} : {}".format(pretty, file, hash))
+        # add_child_into_directory( file_)
+        # print(path)
+        add_child_into_directory(root, file, hash)
 
+for d in seen:
+    obj = seen[d]
+    print(" {}    {}" .format(obj["nickname"], d))
+    for f in obj["children"]:
+        fingerprint = obj["children"][f]
+        print(" {}    {} ".format(fingerprint, f))
 print("The end")
