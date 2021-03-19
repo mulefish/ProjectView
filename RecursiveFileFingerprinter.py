@@ -1,6 +1,7 @@
 from hashlib import md5
 import os
 import json
+from get_id import get_id
 s = os.sep
 
 # fingerprinter from:
@@ -33,7 +34,7 @@ def set_next(directory):
     else:
         nickname += 1
         seen[directory] = {}
-        seen[directory]["nickname"] = nickname
+        seen[directory]["nickname"] = get_id(nickname)
         seen[directory]["children"] = []
 
 
@@ -56,7 +57,7 @@ for root, dirs, files in os.walk('.'):
 
         file_base = os.path.join(root, file)
         hash = fingerprinter(file_base)
-        pretty = len(path) * '---'
+        # pretty = len(path) * '---'
         # print("{}{} : {}".format(pretty, file, hash))
         # add_child_into_directory( file_)
         # print(path)
@@ -64,4 +65,3 @@ for root, dirs, files in os.walk('.'):
             add_child_into_directory(root, file, hash)
 
 print(seen)
-print("The end")
