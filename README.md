@@ -14,7 +14,7 @@ See lines 26 and 63
 python RecursiveFileFingerprinter.py  
   
 Now you will have a big ball of json. Here is some cleaned up output ( thanks to node's JSON.stringify() in pretty.js ):    
-```json
+```yaml
 {  
   "./testdir": {  
     "nickname": 2,  
