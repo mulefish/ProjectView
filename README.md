@@ -1,8 +1,8 @@
 # What will this be?
-3d project viewer
+3d project viewer. So for I've only written the python to collect information up into a JSON format. Later I will write the javascript view portion. 
 
 # TODO
-Everything
+For the view? Everything. For collecting up the information? Maybe done. 
 
 # Stack
 Python ( collect data ) and THREE.js to display results.
