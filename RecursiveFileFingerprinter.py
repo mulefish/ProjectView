@@ -23,6 +23,7 @@ def fingerprinter(file_path):
 
 nickname = 0
 seen = {}
+exclude = [".git", "node_modules"]
 
 
 def set_next(directory):
@@ -40,13 +41,12 @@ def add_child_into_directory(directory, filename, fingerprint):
     if directory not in seen:
         set_next(directory)
 
-    seen[directory]["children"]["filename"] = fingerprint
+    seen[directory]["children"][filename] = fingerprint
 
 
 for root, dirs, files in os.walk('.'):
+    dirs[:] = [d for d in dirs if d not in exclude]
     path = root.split(s)
-    # print("|" + root + "|")
-
     for file in files:
 
         file_base = os.path.join(root, file)
@@ -55,7 +55,8 @@ for root, dirs, files in os.walk('.'):
         # print("{}{} : {}".format(pretty, file, hash))
         # add_child_into_directory( file_)
         # print(path)
-        add_child_into_directory(root, file, hash)
+        if file.endswith(".js") or file.endswith(".py"):
+            add_child_into_directory(root, file, hash)
 
 for d in seen:
     obj = seen[d]
