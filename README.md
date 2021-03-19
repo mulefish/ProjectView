@@ -17,45 +17,57 @@ Now you will have a big ball of json. Here is some cleaned up output ( thanks to
 ```yaml
 {
   "./testdir/childdir": {
-    "nickname": "e",
-    "children": [
+    "files": [
       {
         "fingerprint": "d41d8cd98f00b204e9800998ecf8427e",
         "parent": "e",
         "filename": "test.js"
       }
-    ]
+    ],
+    "daughters_nicknames": [],
+    "nickname": "e",
+    "parent": "./testdir",
+    "daughters": []
   },
   "./directory_with_no_children_dirs": {
-    "nickname": "c",
-    "children": [
+    "files": [
       {
         "fingerprint": "d41d8cd98f00b204e9800998ecf8427e",
         "parent": "c",
         "filename": "dummyfile.js"
       }
-    ]
+    ],
+    "daughters_nicknames": [],
+    "nickname": "c",
+    "parent": ".",
+    "daughters": []
   },
   "./testdir": {
-    "nickname": "d",
-    "children": [
+    "files": [
       {
         "fingerprint": "d41d8cd98f00b204e9800998ecf8427e",
         "parent": "d",
         "filename": "aaa.js"
       }
+    ],
+    "daughters_nicknames": [
+      "e"
+    ],
+    "nickname": "d",
+    "parent": ".",
+    "daughters": [
+      "./testdir/childdir"
     ]
   },
   ".": {
-    "nickname": "b",
-    "children": [
+    "files": [
       {
-        "fingerprint": "4139ce09f7488cf26f5835a0c181dad4",
+        "fingerprint": "0e48715808c39b10ecc200d97a8ef4c1",
         "parent": "b",
         "filename": "RecursiveFileFingerprinter.py"
       },
       {
-        "fingerprint": "eef4ccfbc18cf915d5998c44dc83ce58",
+        "fingerprint": "6a9ac83f3bdf334c6d40c3b7557d1a4c",
         "parent": "b",
         "filename": "pretty.js"
       },
@@ -64,8 +76,19 @@ Now you will have a big ball of json. Here is some cleaned up output ( thanks to
         "parent": "b",
         "filename": "get_id.py"
       }
+    ],
+    "daughters_nicknames": [
+      "c",
+      "d"
+    ],
+    "nickname": "b",
+    "parent": "",
+    "daughters": [
+      "./directory_with_no_children_dirs",
+      "./testdir"
     ]
   }
+}
 ```
 
 
