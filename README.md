@@ -13,7 +13,8 @@ See lines 26 and 63
 # Gather the data from the python
 python RecursiveFileFingerprinter.py  
   
-Now you will have a big ball of json. Here is some cleaned up output ( thank to node's JSON.stringify() is pretty.js ):    
+Now you will have a big ball of json. Here is some cleaned up output ( thanks to node's JSON.stringify() is pretty.js ):    
+```yaml
 {  
   "./testdir": {  
     "nickname": 2,  
@@ -41,7 +42,7 @@ Now you will have a big ball of json. Here is some cleaned up output ( thank to 
     ]  
   }  
 }  
-
+```
 
 
 
