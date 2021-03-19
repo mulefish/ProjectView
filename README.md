@@ -1,5 +1,5 @@
 # What will this be?
-3d project viewer. So for I've only written the python to collect information up into a JSON format. Later I will write the javascript view portion. 
+3d project viewer. So for I've only written the python to collect information up into a JSON format. Later I will write the javascript view portion. The python currently does collect up enough information with which I can make a force-directed graph ( which still needs to be written ). 
 
 # TODO
 For the view? Everything. For collecting up the information? Maybe done. 
