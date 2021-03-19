@@ -34,14 +34,19 @@ def set_next(directory):
         nickname += 1
         seen[directory] = {}
         seen[directory]["nickname"] = nickname
-        seen[directory]["children"] = {}
+        seen[directory]["children"] = []
 
 
 def add_child_into_directory(directory, filename, fingerprint):
     if directory not in seen:
         set_next(directory)
+    nn = seen[directory]["nickname"]
+    obj = {}
+    obj["filename"] = filename
+    obj["fingerprint"] = fingerprint
+    obj["parent"] = nn
 
-    seen[directory]["children"][filename] = fingerprint
+    seen[directory]["children"].append(obj)
 
 
 for root, dirs, files in os.walk('.'):
@@ -58,10 +63,5 @@ for root, dirs, files in os.walk('.'):
         if file.endswith(".js") or file.endswith(".py"):
             add_child_into_directory(root, file, hash)
 
-for d in seen:
-    obj = seen[d]
-    print(" {}    {}" .format(obj["nickname"], d))
-    for f in obj["children"]:
-        fingerprint = obj["children"][f]
-        print(" {}    {} ".format(fingerprint, f))
+print(seen)
 print("The end")
